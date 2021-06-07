@@ -13,12 +13,10 @@ func ToDrawing(img image.Image) image.Image {
 		for x := img.Bounds().Min.X; x < img.Bounds().Max.X; x++ {
 			c := color.NRGBAModel.Convert(img.At(x, y)).(color.NRGBA)
 			round(&c)
-			cm := color.CMYKModel.Convert(c).(color.CMYK)
 
-			newImg.Set(x, y, cm)
+			newImg.Set(x, y, c)
 		}
 	}
-
 	return newImg
 }
 
