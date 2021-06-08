@@ -2,36 +2,39 @@ package main
 
 import (
 	"fmt"
-	"image/png"
-	"log"
-	"os"
-	"time"
 
-	"github.com/ArthurPaivaT/mergi/effects"
+	"github.com/ArthurPaivaT/mergi/server"
 )
 
 func main() {
 	//DIVIDE RGBA BY 257 to get common rgb values
 
-	imgFile, err := os.Open("./images/skyline.jpg")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer imgFile.Close()
+	serverErrChan := make(chan error)
 
-	img, err := decode(imgFile)
-	if err != nil {
-		log.Fatal(err)
-	}
+	go server.Start(serverErrChan)
 
-	newFile, err := os.Create("./images/result.png")
+	serverErr := <-serverErrChan
+	fmt.Println(fmt.Errorf("Error Serving: %w", serverErr))
 
-	start := time.Now()
-	grayImg := effects.ToDrawing(img)
+	// imgFile, err := os.Open("./images/skyline.jpg")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// defer imgFile.Close()
 
-	elapsed := time.Since(start)
-	png.Encode(newFile, grayImg)
-	fmt.Println("Took ", elapsed)
+	// img, err := decode(imgFile)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+
+	// newFile, err := os.Create("./images/result.png")
+
+	// start := time.Now()
+	// grayImg := effects.ToDrawing(img)
+
+	// elapsed := time.Since(start)
+	// png.Encode(newFile, grayImg)
+	// fmt.Println("Took ", elapsed)
 	// c := img.At(12, 6)
 
 	// fmt.Println(c)

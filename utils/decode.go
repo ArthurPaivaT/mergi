@@ -1,14 +1,14 @@
-package main
+package utils
 
 import (
 	"image"
 	"image/gif"
 	"image/jpeg"
 	"image/png"
-	"os"
+	"io"
 )
 
-func decode(file *os.File) (image.Image, error) {
+func Decode(file io.Reader) (image.Image, error) {
 
 	image.RegisterFormat("jpeg", "\xff\xd8", jpeg.Decode, jpeg.DecodeConfig)
 	image.RegisterFormat("png", "\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", png.Decode, png.DecodeConfig)

@@ -1,4 +1,4 @@
-package convert
+package effects
 
 import (
 	"image"
@@ -16,7 +16,7 @@ func ToBlack(img image.Image) image.Image {
 	for y := img.Bounds().Min.Y; y < img.Bounds().Max.Y; y++ {
 		for x := img.Bounds().Min.X; x < img.Bounds().Max.X; x++ {
 			c := color.GrayModel.Convert(img.At(x, y)).(color.Gray)
-			if c.Y > 110 {
+			if c.Y > 100 {
 				newImg.Set(x, y, color.White)
 			} else {
 				newImg.Set(x, y, color.Black)

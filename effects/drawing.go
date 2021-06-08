@@ -1,4 +1,4 @@
-package convert
+package effects
 
 import (
 	"image"
@@ -9,14 +9,15 @@ func ToDrawing(img image.Image) image.Image {
 
 	newImg := image.NewRGBA(img.Bounds())
 
-	for y := img.Bounds().Min.Y; y < img.Bounds().Max.Y; y++ {
-		for x := img.Bounds().Min.X; x < img.Bounds().Max.X; x++ {
+	for x := img.Bounds().Min.X; x < img.Bounds().Max.X; x++ {
+		for y := img.Bounds().Min.Y; y < img.Bounds().Max.Y; y++ {
 			c := color.NRGBAModel.Convert(img.At(x, y)).(color.NRGBA)
 			round(&c)
 
 			newImg.Set(x, y, c)
 		}
 	}
+
 	return newImg
 }
 
