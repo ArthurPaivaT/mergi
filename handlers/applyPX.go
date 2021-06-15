@@ -25,7 +25,7 @@ func ApplyPX(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	pixelatedImg := effects.Pixelate(img, 16)
+	pixelatedImg := effects.Pixelate(img, 10)
 
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	png.Encode(w, pixelatedImg)
