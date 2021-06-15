@@ -22,10 +22,3 @@ func Darkness(img image.Image) float64 {
 
 	return darkness
 }
-
-func Width(i image.Image) int {
-	return i.Bounds().Max.X - i.Bounds().Min.X
-}
-func Height(i image.Image) int {
-	return i.Bounds().Max.Y - i.Bounds().Min.Y
-}
