@@ -1,6 +1,6 @@
 # Mergi
 
-For now, this runs an api which can apply some effects to images
+For now, this runs an api to apply some effects to images
 
 ## Running Server
 
